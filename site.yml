@@ -1,6 +1,5 @@
 --- 
 - name: apply common changes
-  hosts: all
   remote_user: root
  
   tasks:
