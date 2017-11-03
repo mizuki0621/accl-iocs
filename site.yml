@@ -5,10 +5,3 @@
  
   roles:
   - common
-
-- name: Install PSIOCs
-  hosts: tmpnb
-  remote_user: root
-
-  roles:
-  - psioc
