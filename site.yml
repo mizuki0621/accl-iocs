@@ -1,0 +1,14 @@
+--- 
+- name: apply common changes
+  hosts: all
+  remote_user: root
+ 
+  roles:
+  - common
+
+- name: Install PSIOCs
+  hosts: tmpnb
+  remote_user: root
+
+  roles:
+  - psioc

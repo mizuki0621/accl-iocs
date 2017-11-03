@@ -1,0 +1,4 @@
+---
+# vars file for common
+arcapp_server1: arcapp01.cs.nsls2.local
+arcapp_port: 17655

@@ -1,0 +1,5 @@
+---
+# tasks file for common
+- include: iochost.yml
+- include: client.yml
+- include: carchive.yml

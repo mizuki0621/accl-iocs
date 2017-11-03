@@ -1,0 +1,18 @@
+---
+# tasks file for psioc
+  - file: name=/epics/iocs/{{ item }} state=directory owner=softioc group=controls mode=755
+    with_items: [ DMM3706App/Db, dbd, db, bin ]
+
+  - copy: src=DMM3706.{{ ansible_architecture }} dest=/epics/iocs/bin/DMM3706 owner=softioc group=controls mode=755
+
+  - file: name=/epics/iocs/dmm-{{ item }} state=directory owner=softioc group=controls mode=755
+    with_items: "{{ ioc_list }}"
+
+  - copy: src=st.cmd.{{ item }} dest=/epics/iocs/dmm-{{item}}/st.cmd owner=softioc group=controls mode=644
+    with_items: "{{ ioc_list }}"
+
+  - copy: src=config.{{ item }} dest=/epics/iocs/dmm-{{item}}/config owner=softioc group=controls mode=644
+    with_items: "{{ ioc_list }}"
+
+  - command: manage-iocs install dmm-{{ item }}
+    with_items: "{{ ioc_list }}"

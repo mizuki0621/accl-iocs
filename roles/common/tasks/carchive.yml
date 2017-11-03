@@ -1,0 +1,10 @@
+---
+- name: Install channel archiver pkgs
+  apt: pkg={{ item }} state=present
+  with_items:
+  - channelarchiver
+  - carchivetools
+
+- name: create carchive.conf file
+  template: src=carchive.conf.j2 dest=/etc/carchive.conf
+  

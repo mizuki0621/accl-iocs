@@ -1,0 +1,9 @@
+---
+# tasks file for diagioc
+- name: install diagioc spcific pkgs
+  apt: pkg={{ item }} state=present
+  with_items:
+  - tftpd-hpa
+  - epics-caputlog-dev
+  - libevent-2.0-5
+  - libevent-dev

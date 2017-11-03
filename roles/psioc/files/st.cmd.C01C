@@ -1,0 +1,32 @@
+#!/epics/iocs/bin/DMM3706
+# st.cmd.C01C
+## Need to change: 1) Cell name 25A-->; 2) RGA/RGB/RGC; 3) IP
+
+< envPaths 
+epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST","NO")
+epicsEnvSet("EPICS_CA_ADDR_LIST","10.0.153.255")
+epicsEnvSet("COMMOM", "/epics/iocs")
+epicsEnvSet("TOP", "/epics/iocs")
+epicsEnvSet("STREAM_PROTOCOL_PATH", "/epics/iocs/DMM3706App/Db")
+epicsEnvSet("ENGINEER", "Yuke Tian")
+epicsEnvSet("LOCATION", "740 C01 RGA")
+
+## Register all support components
+dbLoadDatabase("$(COMMOM)/dbd/DMM3706.dbd",0,0)
+DMM3706_registerRecordDeviceDriver(pdbbase) 
+
+drvAsynIPPortConfigure("DMM3706", "10.0.140.101:5025")
+
+## Load record instances
+dbLoadRecords("$(TOP)/db/DMM3706_C01A.db")
+dbLoadRecords("$(TOP)/db/iocAdminSoft.db", "IOC=SR:C01-MG{DMM:RGA}")
+
+iocInit()
+
+seq DMM,"PriSys=SR:C01-MG, RG1={DMM}"
+
+cd ${PWD}
+
+dbl > records.dbl
+system "cp records.dbl /cf-update/dmm-C01A.dbl"
+

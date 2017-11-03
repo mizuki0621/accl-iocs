@@ -1,0 +1,10 @@
+---
+- name: Install common packages on ioc nodes
+  apt: pkg={{ item }} state=present
+  with_items:
+    - conserver-server
+    - conserver-client
+    - sysv-rc-softioc
+    - libreccaster1
+    - epics-recsync-dev
+    - libcaputlog3.3.3

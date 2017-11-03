@@ -1,0 +1,7 @@
+---
+- name: Install client pkgs
+  apt: pkg={{ item }} state=present
+  with_items:
+    - edm
+    - edm-iocstats
+    - edm-synapps
