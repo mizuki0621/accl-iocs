@@ -1,6 +1,6 @@
 --- 
 - name: apply common changes
-  host: tmpnb
+  hosts: tmpnb
   remote_user: root
  
   tasks:
