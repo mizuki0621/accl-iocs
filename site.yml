@@ -3,5 +3,6 @@
   hosts: all
   remote_user: root
  
-  roles:
-  - common
+  tasks:
+  - name: install vim
+    apt: pkg=vim-tiny state=latest
