@@ -1,5 +1,6 @@
 --- 
 - name: apply common changes
+  host: tmpnb
   remote_user: root
  
   tasks:
